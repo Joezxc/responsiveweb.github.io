@@ -1,0 +1,339 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+// Import custom variables and mixins
+@import "variables.scss";
+@import "mixins.scss";
+
+// Reset styles for all HTML elements
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// Set font size for the HTML element
+html{
+    font-size: 10px;
+}
+
+// Set default styles for the body element
+body{
+    min-height: 100vh;
+    background-color: $primary-color;
+    color: white ;
+    font-family: $siliguri-font;
+}
+
+// Set default styles for the wrapper element
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    font-size: 1.5rem;;
+}
+
+// Set default styles for the navbar element
+.navbar{
+    padding: 3rem 0;
+    position: relative;
+
+// Style for the top section of the navbar
+    &__top{
+        @include flex(null, space-between);
+
+        // Style for the brand section
+        &--brand{
+            font-size: 2.5rem;
+            text-decoration: none;
+            color: white;
+            position: relative;
+
+            // Style for the brand section
+            span{
+                color: $secondary-color;
+            }
+
+            // Style for the pseudo-element before the brand section
+            &::before{
+                position: absolute;
+                content: "";
+                top: -4px;
+                height: .2rem;
+                width: 1.5rem;
+                background-color: white;
+            }
+        }
+
+        // Style for the toggler button
+        &--toggler{
+            background-color: transparent;
+            border: none;
+            height: 3rem;
+            width: 3rem;
+            @include flex(column, space-evenly);
+            cursor: pointer;
+            @include transition;
+            z-index: 999;
+
+            // Style for the toggler button hover
+            &:hover{
+                opacity: 0.8;
+            }
+
+
+            // Style for the lines inside the toggler button
+            .line{
+                background-color: white;
+                height: .2rem;
+                width: 100%;
+                @include transition;
+            }
+            // Style for the toggler button when it's clicked
+            &.change .line__1{
+                transform: rotate(45deg) translate(0.3rem, 0.8rem);
+            }
+            &.change .line__2{
+                opacity: 0;
+                visibility: hidden;
+            }
+            &.change .line__3{
+               transform: rotate(-45deg) translate(0.3rem, -0.8rem);
+            }
+            // Hide the toggler button on desktop screens
+            @include desktop{
+                display: none;
+            }
+        }
+        
+    }
+
+    // Style for the navbar collapse
+    &__collapse{
+        position:absolute;
+        top: calc(100% - 1rem);
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        height: 0;
+        @include transition;
+
+        &.show__nav{
+            height: calc(210px + 30px);
+
+        }
+
+        // Style for the navbar collapse when it's shown
+        &--nav{
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+
+            // Style for the navbar collapse nav list items
+            & li{
+                margin: 2rem 0;
+                list-style-type: none;
+                text-align: center;
+            }
+
+            // Style for the navbar collapse nav links
+            & a{
+                color: rgb(88, 88, 88);
+                text-decoration: none;
+                font-size: 1.7rem;
+                letter-spacing: 1px;
+                @include transition;
+
+                // Style for the navbar collapse nav links hover
+                &:hover{
+                    color: $secondary-color;
+                }
+                // Style for the navbar collapse nav links active
+                &:active{
+                    color: $secondary-color;
+                }
+            }
+
+            // Style for the navbar collapse nav on desktop screens
+            @include desktop{
+                padding: 0;
+
+                 // Style for the navbar collapse nav list items on desktop screens
+                &li{
+                    margin:0;
+                }
+            }
+
+        }
+
+         // Style for the navbar collapse on desktop screens
+        @include desktop{
+            position: relative;
+            height: auto!important;
+            
+
+            // Style for the navbar collapse nav on desktop screens
+            &--nav{
+                @include flex(null, flex-end);
+                background-color: transparent;
+
+                // Style for the navbar collapse nav links on desktop screens
+                & a{
+                    color: #fff;
+
+                    // Style for the navbar collapse nav links hover on desktop screens
+                    &:hover{
+                        color: $secondary-color;
+                        opacity: 0.8;
+                    }
+                }
+
+                // Style for the navbar collapse nav list items on desktop screens
+                & li{
+                    margin-left: 4rem;
+                }
+            }
+        }  
+    }
+
+    // Style for the navbar on desktop screens
+    @include desktop{
+        @include flex(null, space-between);
+    }
+}
+
+// Style for the banner image
+.banner_img{
+        @include flex(column, null, center);
+        height: calc(200vh - 100px)
+
+        
+    }
+// Style for the banner
+ .banner{
+
+    &__content{
+        min-height: 50vh;
+        @include flex(column);
+        text-align: center;
+
+        &--heading{
+            font-size: 5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+
+            span{
+                color: $secondary-color;
+                font-weight: 300;
+            }
+        }
+
+        &--para{
+            margin: 2rem auto;
+            max-width: 600px;
+            font-size: 1.8rem;
+            line-height: 1.6;
+        }
+
+        &--btns{
+            margin-top: 1rem;
+
+            & .btn{
+                border: none;
+                background-color: $secondary-color;
+                border: 3px solid $secondary-color;
+                padding: 1.2rem 2.2rem;
+                text-transform: capitalize;
+                font-family: $siliguri-font;
+                font-size: 1.5rem;
+                cursor: pointer;
+                @include transition;
+
+                &.btn-white{
+                    margin-right: 1rem;
+                    color: $primary-color;
+
+                    &:hover{
+                        background-color: $primary-color;
+                        color: $secondary-color; 
+                    }
+
+                }
+
+                &.btn-transparent{
+                    background-color: transparent;
+                    color: $secondary-color;
+
+                    &:hover{
+                        background-color: $secondary-color;
+                        color: $primary-color;
+                    }
+                }
+
+
+
+
+            }
+        }
+
+
+    }
+
+    &__--icons{
+        margin-top: 5rem;
+        display: flex;
+
+        & a{
+            display: inline-block;
+            text-decoration: none;
+            color: $primary-color;
+            background-color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 3px;
+            @include flex(null);
+            margin: 0 0.5rem;
+            @include transition;
+
+            &:hover{
+                color: $secondary-color;
+                box-shadow: 0 0 6px 5px rgba(0, 0, 0, 0.2);
+            }
+ 
+        }
+    }
+}   
+
+ @include desktop{
+    @include flex(row, space-between);
+
+    &__content{
+        text-align: left;
+        margin-right: 3rem;
+        align-items: flex-start;
+    }
+ }
+
+
+
+
+
+   
+    
+
+
+
+    
+
+
+
+
+
+
+
+        
+   
+
+    
+
+

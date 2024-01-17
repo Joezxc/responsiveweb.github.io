@@ -1,0 +1,22 @@
+// Mixin for adding transition to elements
+@mixin transition{
+    transition: all 0.3s ease-in-out;
+}
+
+
+// Mixin for creating a flex container with direction, content, and items alignment options
+@mixin flex($dir, $content: center, $items: center){
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $content;
+    align-items: $items;
+}
+
+// Mixin for applying styles for larger screens
+@mixin desktop{
+    @media (min-width: 992px){
+        @content;
+        
+    } 
+}
+   
